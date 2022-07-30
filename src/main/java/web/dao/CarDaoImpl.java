@@ -24,21 +24,22 @@ public class CarDaoImpl implements CarDao{
         this.entityManager = entityManager;
     }
 
-//    @Override
-//    @SuppressWarnings("unchecked")
-//    public List<Car> listCar() {
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Car> listCar() {
 //        TypedQuery<Car> query = entityManager.
 //        return query.getResultList();
-//    }
+        return null;
+    }
 
-//    @Override
-//
-//    public List<Car> limitListCar(Long limit) {
+    @Override
+
+    public List<Car> limitListCar(Long limit) {
 //        String sql = "SELECT * FROM CAR LIMIT :limit";
 //        NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
 //        query.addEntity(Car.class);
 //        query.setParameter("limit",limit);
 //        return (List<Car>) query.getResultList();
-//
-//    }
+        return null;
+    }
 }
