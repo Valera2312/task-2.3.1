@@ -8,26 +8,29 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.models.Car;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-//@Repository
-//@Transactional
-//public class CarDaoImpl implements CarDao{
-//
-//    private final LocalContainerEntityManagerFactoryBean entityManager;
-//
-//    @Autowired
-//    CarDaoImpl(LocalContainerEntityManagerFactoryBean entityManager) {
-//        this.entityManager = entityManager;
-//    }
+@Repository
+@Transactional
+public class CarDaoImpl implements CarDao{
+
+    //private final LocalContainerEntityManagerFactoryBean entityManager;
+
+    private EntityManager entityManager;
+    @PersistenceContext
+    void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
 //    @Override
 //    @SuppressWarnings("unchecked")
 //    public List<Car> listCar() {
-//        TypedQuery<Car> query = entityManager.getCurrentSession().createQuery("from Car");
+//        TypedQuery<Car> query = entityManager.
 //        return query.getResultList();
 //    }
-//
+
 //    @Override
 //
 //    public List<Car> limitListCar(Long limit) {
@@ -38,4 +41,4 @@ import java.util.List;
 //        return (List<Car>) query.getResultList();
 //
 //    }
-//}
+}
