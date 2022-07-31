@@ -33,5 +33,18 @@ public class UserServiceImpl implements UserService {
         userDao.addUser(user);
     }
 
+    @Override
+    public void addUser(String name, String lastName, int age) {
+        userDao.addUser(name,lastName,age);
+    }
+
+    @Override
+    public void editUser(String name, String lastName, int age, Long id) {
+        userDao.editUser(name,lastName,age,id);
+    }
+
+    public User findById(Long id) {
+        return userDao.findById(id);
+    }
 }
 

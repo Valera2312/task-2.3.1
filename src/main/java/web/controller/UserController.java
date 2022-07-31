@@ -2,6 +2,7 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -36,10 +37,28 @@ public class UserController  {
         return "new";
     }
 
-    @PostMapping(path = "add" )
-    public String addUser(@ModelAttribute("user") User user) {
+    @GetMapping(value = "/edit/{id}" )
+    public String updateUser(@PathVariable Long id, Model model) {
+        model.addAttribute("id",id);
+        User user = userService.findById(id);
+        model.addAttribute("user",user);
+        return "update";
+    }
 
-        userService.addUser(user);
+    @PostMapping(path = "add" )
+    public String addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
+                @RequestParam("age") int age) {
+
+        userService.addUser(name,lastName,age);
+
+        return "redirect:/";
+    }
+    @PostMapping(path = "/update" )
+    public String editUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
+                          @RequestParam("age") int age,@RequestParam("id") Long id) {
+
+        userService.editUser(name,lastName,age,id);
+
         return "redirect:/";
     }
 }
