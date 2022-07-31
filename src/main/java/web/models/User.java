@@ -9,6 +9,12 @@ public class User {
     public User() {
     }
 
+    public User(String name, String lastName, int age) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -21,7 +27,7 @@ public class User {
     private String lastName;
 
     @Column(name = "age", nullable = false, length = 30)
-    private String age;
+    private int age;
 
     public Long getId() {
         return id;
@@ -47,11 +53,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }

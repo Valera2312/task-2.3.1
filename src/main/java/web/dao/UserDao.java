@@ -9,6 +9,6 @@ import java.util.List;
 public interface UserDao {
     List<User> listUser();
     public void deleteUser(Long id);
-
+    public void addUser(User user);
 
 }
