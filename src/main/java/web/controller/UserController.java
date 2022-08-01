@@ -30,7 +30,7 @@ public class UserController  {
         return "redirect:/";
     }
     @GetMapping(value = "/new" )
-    public String deleteUser() {
+    public String addUser() {
         return "new";
     }
 
