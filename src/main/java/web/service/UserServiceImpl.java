@@ -2,6 +2,7 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.models.User;
@@ -21,12 +22,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public List<User> listUsers() {
-
         return userDao.listUser();
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         userDao.editUser(user);
     }
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true,propagation = Propagation.MANDATORY)
     public User findById(Long id) {
         return userDao.findById(id);
     }
