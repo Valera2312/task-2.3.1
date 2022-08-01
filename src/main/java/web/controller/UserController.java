@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 import web.models.User;
 import web.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 public class UserController  {
@@ -39,26 +36,28 @@ public class UserController  {
 
     @GetMapping(value = "/edit/{id}" )
     public String updateUser(@PathVariable Long id, Model model) {
-        model.addAttribute("id",id);
         User user = userService.findById(id);
         model.addAttribute("user",user);
         return "update";
     }
 
     @PostMapping(path = "add" )
-    public String addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
-                @RequestParam("age") int age) {
+    public String addUser(@ModelAttribute("user") User user) {
 
-        userService.addUser(name,lastName,age);
+        userService.addUser(user);
 
         return "redirect:/";
     }
     @PostMapping(path = "/update" )
-    public String editUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
-                          @RequestParam("age") int age,@RequestParam("id") Long id) {
+    public String editUser( @ModelAttribute("user") User user, @RequestParam("id") Long id) {
 
-        userService.editUser(name,lastName,age,id);
-
+        userService.editUser(user);
         return "redirect:/";
     }
+    @ModelAttribute(value = "user")
+    public User newUser()
+    {
+        return new User();
+    }
+
 }
