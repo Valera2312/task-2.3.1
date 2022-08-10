@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional()
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         userDao.editUser(user);
     }
     @Override
-    @Transactional(readOnly = true,propagation = Propagation.MANDATORY)
+    @Transactional(readOnly = true)
     public User findById(Long id) {
         return userDao.findById(id);
     }
