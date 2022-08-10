@@ -1,9 +1,8 @@
 package web.dao;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-
-import org.springframework.transaction.annotation.Transactional;
 import web.models.User;
 
 import javax.persistence.EntityManager;
@@ -16,6 +15,7 @@ public class UserDaoImpl implements UserDao {
     //private final LocalContainerEntityManagerFactoryBean entityManager;
 
     private EntityManager entityManager;
+
 
     @PersistenceContext
     public void setEntityManager(EntityManager entityManager) {
